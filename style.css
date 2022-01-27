@@ -1,0 +1,32 @@
+@import url('http://fonts.cdnfonts.com/css/made-outer-sans-alt');
+* {
+  margin: 0;
+}
+body {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  background-color: rgb(212, 212, 212);
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  padding: 8px 14px 12px;
+  position: relative;
+  width: 285px;
+  height: 410px;
+  background: #ffffff;
+  border: 1px solid #e6e8ec;
+  border-radius: 8px;
+}
+.heading {
+    display: flex;
+    justify-content: space-between;
+    
+}
+.bottom {
+    display: flex;
+    justify-content: space-between;
+}
