@@ -1,9 +1,9 @@
 import Select from "react-select";
-import FilterListIcon from "@mui/icons-material/FilterList";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { IconButton } from "@mui/material";
 // import SearchIcon from "@mui/icons-material/Search";
+import Filter from "../Components/Filter";
 const customStyles = {
   control: (base, state) => ({
     ...base,
@@ -17,6 +17,7 @@ const customStyles = {
     width: "100%",
     margin: 0,
     padding: 0,
+    
   }),
 
   option: (styles, { isFocused }) => {
@@ -86,7 +87,7 @@ const SearchBar = () => {
       </div>
       <div style={{ position: "absolute", top: 0, right: 0 }}>
         <IconButton>
-          <FilterListIcon sx={{ color: "grey" }} />
+          <Filter />
         </IconButton>
         <IconButton>
           <AddBoxIcon sx={{ color: "grey" }} />
