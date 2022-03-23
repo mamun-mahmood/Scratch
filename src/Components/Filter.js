@@ -26,7 +26,7 @@ function valuetext(value) {
   
   const minDistance = 1;
 export default function BasicModal() {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
