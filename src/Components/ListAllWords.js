@@ -90,7 +90,7 @@ export default function CheckboxList() {
     },
   ]);
   return (
-    <List>
+    <List style={{height: "100%"}}>
       {words.map((word, index) => {
         return (
           <div key={index}>
