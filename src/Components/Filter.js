@@ -166,7 +166,7 @@ export default function BasicModal() {
           </div>
           {/* range slider */}
           <Slider
-          sx={{color: '#0e7b65'}}
+          sx={{color: '#0e7b65', width: '80%', ml: "10%"}}
             getAriaLabel={() => 'Minimum distance'}
             value={value1}
             onChange={handleChange1}
@@ -174,6 +174,7 @@ export default function BasicModal() {
             getAriaValueText={valuetext}
             disableSwap
           />
+          <Typography sx={{textAlign: 'center', mt:-2}}>Learning Level</Typography>
         </Box>
       </Modal>
     </>
