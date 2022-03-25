@@ -11,10 +11,24 @@ import ListIcon from "@mui/icons-material/List";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import SettingsIcon from "@mui/icons-material/Settings";
+import * as  Realm from "realm-web"
 export default function Homepage() {
   const [value, setValue] = React.useState(0);
+  const [allWords, setAllWords] = React.useState([])
   const ref = React.useRef(null);
-  
+  React.useEffect(async () => {
+    const REALM_APP_ID = 'application-0-rwiqy'
+    const app = new Realm.App({id: REALM_APP_ID})
+    const credentials = Realm.Credentials.anonymous();
+    try {
+      const user = await app.login(credentials);
+      const words = await user.functions.getAllWords();
+      setAllWords(words)
+      console.log(words);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [])
   return (
     <Box
       sx={{ pb: 7, width: "100%", border: "1px solid #0e7b65", mt: 1 }}
