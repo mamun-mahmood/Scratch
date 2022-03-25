@@ -4,6 +4,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { IconButton } from "@mui/material";
 // import SearchIcon from "@mui/icons-material/Search";
 import Filter from "../Components/Filter";
+import { useState } from "react";
 const customStyles = {
   control: (base, state) => ({
     ...base,
@@ -59,8 +60,8 @@ const customStyles = {
     };
   },
 };
-const SearchBar = () => {
-  const searchSugesstion = [
+const SearchBar = ({allWords:data}) => {
+  const allWordss = [
     { label: "Apple", value: "Apple" },
     { label: "Ball", value: "Ball" },
     { label: "Cat", value: "Cat" },
@@ -68,13 +69,15 @@ const SearchBar = () => {
     { label: "Elon Musk", value: "Elon Musk" },
     { label: "Taylor Swift", value: "Taylor Swift" },
   ];
+  let allWords = []
+  data.map((each) => allWords.push({label: each.word, value: each.word}))
   return (
     <div style={{ width: "100%", padding: 0, margin: 0 }}>
       <Select
         classNamePrefix="menu"
         styles={customStyles}
         placeholder="Search for word..."
-        options={searchSugesstion}
+        options={allWords}
         components={{
           DropdownIndicator: () => null,
           IndicatorSeparator: () => null,

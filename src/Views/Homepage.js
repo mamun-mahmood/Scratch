@@ -13,18 +13,18 @@ import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import SettingsIcon from "@mui/icons-material/Settings";
 import * as  Realm from "realm-web"
 export default function Homepage() {
+  const ref = React.useRef(null);
   const [value, setValue] = React.useState(0);
   const [allWords, setAllWords] = React.useState([])
-  const ref = React.useRef(null);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(async () => {
-    const REALM_APP_ID = 'application-0-rwiqy'
-    const app = new Realm.App({id: REALM_APP_ID})
+    const REALM_APP_ID = 'realmappwordstore-mgzfz';
+    const app = new Realm.App({id: REALM_APP_ID});
     const credentials = Realm.Credentials.anonymous();
     try {
-      const user = await app.login(credentials);
+      const user = await app.logIn(credentials);
       const words = await user.functions.getAllWords();
       setAllWords(words)
-      console.log(words);
     } catch (error) {
       console.log(error);
     }
@@ -37,11 +37,11 @@ export default function Homepage() {
       <Paper
         sx={{ position: "sticky", top: 0, left: 0, right: 0, zIndex: "1000" }}
       >
-        <SearchBar sx={{ m: 0, p: 0 }} />
+        <SearchBar allWords={allWords} sx={{ m: 0, p: 0 }} />
       </Paper>
 
       <CssBaseline />
-      <ListAllWords />
+      <ListAllWords allWords={allWords} />
       <Paper
         sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
         elevation={3}
