@@ -38,7 +38,8 @@ export default function Homepage() {
       sx={{
         pb: 7,
         width: "100%",
-        border: "1px solid #0e7b65",
+        borderLeft: "2px solid #0e7b65",
+        borderRight: "2px solid #0e7b65",
         borderRadius: '5px',
         mt: 1,
         backgroundColor: "white",

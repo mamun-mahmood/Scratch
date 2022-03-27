@@ -61,14 +61,6 @@ const customStyles = {
   },
 };
 const SearchBar = ({allWords:data}) => {
-  const allWordss = [
-    { label: "Apple", value: "Apple" },
-    { label: "Ball", value: "Ball" },
-    { label: "Cat", value: "Cat" },
-    { label: "Dog", value: "Dog" },
-    { label: "Elon Musk", value: "Elon Musk" },
-    { label: "Taylor Swift", value: "Taylor Swift" },
-  ];
   let allWords = []
   data.map((each) => allWords.push({label: each.word, value: each.word}))
   return (

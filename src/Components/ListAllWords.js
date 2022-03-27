@@ -9,17 +9,18 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Divider from "@mui/material/Divider";
 import Ded from "./Ded";
-import { Fab } from "@mui/material";
+import { CircularProgress, Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+
 const style = {
   position: "sticky",
   margin: 0,
-  top: 'auto',
+  top: "auto",
   right: 20,
   bottom: 100,
-  left: 'auto',
-  marginLeft: '75%',
-  backgroundColor: '#0e7b65'
+  left: "auto",
+  marginLeft: "75%",
+  backgroundColor: "#0e7b65",
 };
 export default function CheckboxList({ allWords, setTab }) {
   const [checked, setChecked] = useState([0]);
@@ -39,7 +40,17 @@ export default function CheckboxList({ allWords, setTab }) {
   const [show, setShow] = useState(false);
   const [showDescript, setShowDescript] = useState({});
   return (
-    <List style={{ height: "100%",}}>
+    <List style={{ height: "100%", minHeight: "100vh" }}>
+      <div
+        style={{
+          display: `${allWords.length ? "none" : "flex"}`,
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginTop: '50%'
+        }}
+      >
+        <CircularProgress sx={{color: "#0e7b65"}} />
+      </div>
       {allWords.map((word, index) => {
         return (
           <div key={index} style={{ animation: "fadeIn 0.4s ease-in-out" }}>
@@ -90,8 +101,8 @@ export default function CheckboxList({ allWords, setTab }) {
           </div>
         );
       })}
-      <Fab style={style} color="primary" aria-label="add">
-        <AddIcon onClick={() => setTab("NEWWORD")}/>
+      <Fab sx={style} style={{display: `${allWords.length ? "block" : "none"}`}} color="primary" aria-label="add">
+        <AddIcon sx={{mt: 1}} onClick={() => setTab("NEWWORD")} />
       </Fab>
     </List>
   );
