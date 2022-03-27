@@ -1,9 +1,10 @@
 import { Button, Divider, Grid, IconButton, TextField } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 const AddNewWord = ({setTab}) => {
+  const [formData, setFormData] = useState({})
   return (
-    <div style={{ padding: "10px"}} className="menu">
+    <div style={{ padding: "10px", animation: "rightfadeIn 0.5s ease-in-out",}}>
       <div
         style={{
           display: "flex",
@@ -131,7 +132,7 @@ const AddNewWord = ({setTab}) => {
               name="group"
             />
             <IconButton>
-              <AddIcon />
+              <AddIcon sx={{color: "#0e7b65",width: 35,height: 35, border: '2px solid #0e7b65', borderRadius: '50%'}}/>
             </IconButton>
           </div>
         </Grid>

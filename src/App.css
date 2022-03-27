@@ -1,9 +1,6 @@
 *{ 
   margin: 0;
 }
-body{
-  background-color: darkgray;
-}
 
 .scrollBar::-webkit-scrollbar {
   display: none;
@@ -17,6 +14,16 @@ body{
   100% {
     opacity: 1;
     transform: translateY(-0);
+  }
+}
+@keyframes rightfadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 @keyframes fadeOut {

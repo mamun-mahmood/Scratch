@@ -102,7 +102,7 @@ export default function CheckboxList({ allWords, setTab }) {
         );
       })}
       <Fab sx={style} style={{display: `${allWords.length ? "block" : "none"}`}} color="primary" aria-label="add">
-        <AddIcon sx={{mt: 1}} onClick={() => setTab("NEWWORD")} />
+        <AddIcon sx={{mt: 1,}} onClick={() => setTab("NEWWORD")} />
       </Fab>
     </List>
   );
