@@ -29,3 +29,9 @@ body{
     transform: translateY(-0);
   }
 }
+.MuiFormLabel-root.Mui-focused {
+  color: #0e7b65 !important;
+}
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-bottom: 1px solid #0e7b65 !important;
+}

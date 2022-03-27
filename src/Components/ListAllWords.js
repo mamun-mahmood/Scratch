@@ -9,8 +9,19 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Divider from "@mui/material/Divider";
 import Ded from "./Ded";
-
-export default function CheckboxList({ allWords }) {
+import { Fab } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+const style = {
+  position: "sticky",
+  margin: 0,
+  top: 'auto',
+  right: 20,
+  bottom: 100,
+  left: 'auto',
+  marginLeft: '75%',
+  backgroundColor: '#0e7b65'
+};
+export default function CheckboxList({ allWords, setTab }) {
   const [checked, setChecked] = useState([0]);
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -25,17 +36,18 @@ export default function CheckboxList({ allWords }) {
     setChecked(newChecked);
   };
   console.log(allWords);
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
   const [showDescript, setShowDescript] = useState({});
   return (
-    <List style={{ height: "100%" }}>
+    <List style={{ height: "100%",}}>
       {allWords.map((word, index) => {
         return (
-          <div key={index} style={{animation: "fadeIn 0.4s ease-in-out",}}>
+          <div key={index} style={{ animation: "fadeIn 0.4s ease-in-out" }}>
             <ListItem
               onClick={() => {
-                setShow(!show)
-                setShowDescript(index)}}
+                setShow(!show);
+                setShowDescript(index);
+              }}
               key={index}
               secondaryAction={
                 <>
@@ -78,6 +90,9 @@ export default function CheckboxList({ allWords }) {
           </div>
         );
       })}
+      <Fab style={style} color="primary" aria-label="add">
+        <AddIcon onClick={() => setTab("NEWWORD")}/>
+      </Fab>
     </List>
   );
 }
