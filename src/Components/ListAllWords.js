@@ -14,7 +14,6 @@ import AddIcon from "@mui/icons-material/Add";
 
 const style = {
   position: "sticky",
-  margin: 0,
   top: "auto",
   right: 20,
   bottom: 100,
@@ -22,7 +21,7 @@ const style = {
   marginLeft: "75%",
   backgroundColor: "#0e7b65",
 };
-export default function CheckboxList({ allWords, setTab }) {
+export default function CheckboxList({ allWords, setTab, searchWord }) {
   const [checked, setChecked] = useState([0]);
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -37,22 +36,74 @@ export default function CheckboxList({ allWords, setTab }) {
     setChecked(newChecked);
   };
   console.log(allWords);
+  console.log(searchWord);
   const [show, setShow] = useState(false);
   const [showDescript, setShowDescript] = useState({});
   return (
-    <List style={{ height: "100%", minHeight: "100vh" }}>
+    <List style={{ minHeight: "100vh" }}>
       <div
         style={{
           display: `${allWords.length ? "none" : "flex"}`,
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginTop: '50%'
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "50%",
         }}
       >
-        <CircularProgress sx={{color: "#0e7b65"}} />
+        <CircularProgress sx={{ color: "#0e7b65" }} />
       </div>
-      {allWords.map((word, index) => {
-        return (
+      {allWords.map((word, index) =>
+        searchWord ? (
+          word.word === searchWord && (
+            <div key={index} style={{ animation: "fadeIn 0.4s ease-in-out" }}>
+              <ListItem
+                onClick={() => {
+                  setShow(!show);
+                  setShowDescript(index);
+                }}
+                key={index}
+                secondaryAction={
+                  <>
+                    <IconButton sx={{ ml: 1 }} edge="end" aria-label="comments">
+                      <StarIcon fontSize="small" sx={{ color: "#0e7b65" }} />
+                    </IconButton>
+                    <IconButton sx={{ ml: 1 }} edge="end" aria-label="comments">
+                      <DeleteIcon fontSize="small" />
+                    </IconButton>
+                    <IconButton sx={{ ml: 1 }} edge="end" aria-label="comments">
+                      <EditIcon fontSize="small" />
+                    </IconButton>
+                  </>
+                }
+              >
+                <ListItemButton onClick={handleToggle(word)}>
+                  <h4>{word.word}</h4>
+                  <small style={{ marginLeft: "10px" }}>({word.adj})</small>
+                  <IconButton>
+                    <VolumeUpIcon sx={{ color: "#0e7b65" }} fontSize="small" />
+                  </IconButton>
+                </ListItemButton>
+              </ListItem>
+              {/* <Ded show={show}/> */}
+              <div
+                style={{
+                  padding: "5px 15px",
+                  display: `${
+                    showDescript === index && show ? "block" : "none"
+                  }`,
+                  animation: "fadeIn 0.4s ease-in-out",
+                }}
+              >
+                <h4>
+                  Meaning:
+                  <span>
+                    <small>{word.meaning}</small>
+                  </span>
+                </h4>
+              </div>
+              <Divider />
+            </div>
+          )
+        ) : (
           <div key={index} style={{ animation: "fadeIn 0.4s ease-in-out" }}>
             <ListItem
               onClick={() => {
@@ -99,10 +150,16 @@ export default function CheckboxList({ allWords, setTab }) {
             </div>
             <Divider />
           </div>
-        );
-      })}
-      <Fab sx={style} style={{display: `${allWords.length ? "block" : "none"}`}} color="primary" aria-label="add">
-        <AddIcon sx={{mt: 1,}} onClick={() => setTab("NEWWORD")} />
+        )
+      )}
+      <Fab
+        sx={style}
+        style={{ display: `${allWords.length ? "block" : "none"}` }}
+        color="primary"
+        aria-label="add"
+        onClick={() => setTab(5)}
+      >
+        <AddIcon sx={{ mt: 1 }} />
       </Fab>
     </List>
   );

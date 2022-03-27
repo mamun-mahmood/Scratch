@@ -2,6 +2,7 @@ import Select from "react-select";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 // import SearchIcon from "@mui/icons-material/Search";
 import Filter from "../Components/Filter";
 import { useState } from "react";
@@ -18,7 +19,6 @@ const customStyles = {
     width: "100%",
     margin: 0,
     padding: 0,
-    
   }),
 
   option: (styles, { isFocused }) => {
@@ -60,9 +60,9 @@ const customStyles = {
     };
   },
 };
-const SearchBar = ({allWords:data}) => {
-  let allWords = []
-  data.map((each) => allWords.push({label: each.word, value: each.word}))
+const SearchBar = ({ allWords: data, searchWord, setSearchWord }) => {
+  let allWords = [];
+  data.map((each) => allWords.push({ label: each.word, value: each.word }));
   return (
     <div style={{ width: "100%", padding: 0, margin: 0 }}>
       <Select
@@ -70,17 +70,27 @@ const SearchBar = ({allWords:data}) => {
         styles={customStyles}
         placeholder="Search for word..."
         options={allWords}
+        onChange={(e) => setSearchWord(e.value)}
         components={{
           DropdownIndicator: () => null,
           IndicatorSeparator: () => null,
         }}
       />
-      <div style={{ position: "absolute", top: 0, left: 50 }}>
-        {/* <IconButton>
-          <SearchIcon />
-        </IconButton> */}
-      </div>
+      {/* <div style={{ position: "absolute", top: 0, right: 100, display: `${searchWord ? "block" : 'none'}`}}>
+        <IconButton>
+          <CloseIcon onClick={() => setSearchWord("")}/>
+        </IconButton>
+      </div> */}
       <div style={{ position: "absolute", top: 0, right: 0 }}>
+        <IconButton>
+          <CloseIcon
+            style={{ display: `${searchWord ? "block" : "none"}` }}
+            onClick={() => {
+              setSearchWord("");
+              allWords.push([]);
+            }}
+          />
+        </IconButton>
         <IconButton>
           <Filter />
         </IconButton>

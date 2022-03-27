@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 const AddNewWord = ({setTab}) => {
   const [formData, setFormData] = useState({})
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
   return (
     <div style={{ padding: "10px", animation: "rightfadeIn 0.5s ease-in-out",}}>
       <div
@@ -49,6 +52,7 @@ const AddNewWord = ({setTab}) => {
               label="Word"
               variant="standard"
               name="word"
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={6}>
@@ -58,6 +62,7 @@ const AddNewWord = ({setTab}) => {
               label="Parts of speech"
               variant="standard"
               name="partsOfSpeech"
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12}>
@@ -67,6 +72,7 @@ const AddNewWord = ({setTab}) => {
               label="Meaning"
               variant="standard"
               name="meaning"
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12}>
@@ -76,6 +82,7 @@ const AddNewWord = ({setTab}) => {
               label="Example"
               variant="standard"
               name="exampleSentence"
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12}>
@@ -85,6 +92,7 @@ const AddNewWord = ({setTab}) => {
               label="Mnemonics"
               variant="standard"
               name="mnemonics"
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12}>
@@ -94,6 +102,7 @@ const AddNewWord = ({setTab}) => {
               label="Synonyms"
               variant="standard"
               name="synonyms"
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12}>
@@ -103,6 +112,7 @@ const AddNewWord = ({setTab}) => {
               label="Antonyms"
               variant="standard"
               name="antonyms"
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12}>
@@ -112,6 +122,7 @@ const AddNewWord = ({setTab}) => {
               label="Note"
               variant="standard"
               name="notes"
+              onChange={handleChange}
             />
           </Grid>
           <div

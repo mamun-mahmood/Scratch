@@ -14,11 +14,11 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import * as Realm from "realm-web";
 import AddNewWord from "../Components/AddNewWord";
 
-
 export default function Homepage() {
   const ref = React.useRef(null);
   const [value, setValue] = React.useState(0);
   const [allWords, setAllWords] = React.useState([]);
+  const [searchWord, setSearchWord] = React.useState("")
   // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(async () => {
     const REALM_APP_ID = "realmappwordstore-mgzfz";
@@ -59,13 +59,13 @@ export default function Homepage() {
               zIndex: "1000",
             }}
           >
-            <SearchBar allWords={allWords} sx={{ m: 0, p: 0 }} />
+            <SearchBar allWords={allWords} searchWord={searchWord} setSearchWord={setSearchWord} sx={{ m: 0, p: 0 }} />
           </Paper>
           <CssBaseline />
-          <ListAllWords allWords={allWords} setTab={setTab}/>
+          <ListAllWords allWords={allWords} searchWord={searchWord} setTab={setTab}/>
         </>
       )}
-      {tab === "NEWWORD" && <AddNewWord setTab={setTab}/>}
+      {tab === 5 && <AddNewWord setTab={setTab}/>}
       <Paper
         sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
         elevation={3}
