@@ -8,7 +8,7 @@ import StarIcon from "@mui/icons-material/Star";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Divider from "@mui/material/Divider";
-import { CircularProgress, Fab, } from "@mui/material";
+import { CircularProgress, Fab, Rating } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 const style = {
@@ -25,7 +25,7 @@ export default function CheckboxList({
   setTab,
   searchWord,
   setEditWord,
-  handleClickOpen
+  handleClickOpen,
 }) {
   const [checked, setChecked] = useState([0]);
   const handleToggle = (value) => () => {
@@ -42,6 +42,8 @@ export default function CheckboxList({
   };
   const [show, setShow] = useState(false);
   const [showDescript, setShowDescript] = useState({});
+  const [ratingValue, setRatingValue] = useState(0);
+
   return (
     <List style={{ minHeight: "100vh" }}>
       <div
@@ -69,7 +71,12 @@ export default function CheckboxList({
                     <IconButton sx={{ ml: 1 }} edge="end" aria-label="comments">
                       <StarIcon fontSize="small" sx={{ color: "#0e7b65" }} />
                     </IconButton>
-                    <IconButton onClick={handleClickOpen} sx={{ ml: 1 }} edge="end" aria-label="comments">
+                    <IconButton
+                      onClick={handleClickOpen}
+                      sx={{ ml: 1 }}
+                      edge="end"
+                      aria-label="comments"
+                    >
                       <DeleteIcon fontSize="small" />
                     </IconButton>
                     <IconButton
@@ -124,9 +131,15 @@ export default function CheckboxList({
               secondaryAction={
                 <>
                   <IconButton sx={{ ml: 1 }} edge="end" aria-label="comments">
+                    {/* {ratingValue} */}
                     <StarIcon fontSize="small" sx={{ color: "#0e7b65" }} />
                   </IconButton>
-                  <IconButton onClick={handleClickOpen} sx={{ ml: 1 }} edge="end" aria-label="comments">
+                  <IconButton
+                    onClick={handleClickOpen}
+                    sx={{ ml: 1 }}
+                    edge="end"
+                    aria-label="comments"
+                  >
                     <DeleteIcon fontSize="small" />
                   </IconButton>
                   <IconButton
@@ -155,7 +168,8 @@ export default function CheckboxList({
             <div
               style={{
                 padding: "5px 15px",
-                display: `${showDescript === index && show ? "block" : "none"}`,
+                display: `${showDescript === index && show ? "flex" : "none"}`,
+                justifyContent: 'space-between',
                 animation: "fadeIn 0.4s ease-in-out",
               }}
             >
@@ -165,6 +179,15 @@ export default function CheckboxList({
                   <small>{word.meaning}</small>
                 </span>
               </h4>
+              <Rating
+              readOnly
+                name="simple-controlled"
+                value={ratingValue}
+                sx={{ color: "#0e7b65" }}
+                onChange={(event, newValue) => {
+                  setRatingValue(newValue);
+                }}
+              />
             </div>
             <Divider />
           </div>

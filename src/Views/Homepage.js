@@ -118,7 +118,7 @@ export default function Homepage() {
             onClick={() => setTab(1)}
           />
           <BottomNavigationAction
-            label="Games"
+            label="Practice"
             icon={<SportsEsportsIcon sx={{ height: 30, width: 30 }} />}
             onClick={() => setTab(2)}
           />
