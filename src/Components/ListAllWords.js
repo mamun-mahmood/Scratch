@@ -157,8 +157,9 @@ export default function CheckboxList({
               }
             >
               <ListItemButton onClick={handleToggle(word)}>
+                <small style={{ marginRight: "5px", }}>{index+1}.</small>
                 <h4>{word.word}</h4>
-                <small style={{ marginLeft: "10px" }}>({word.adj})</small>
+                {/* <small style={{ marginLeft: "10px" }}>({word.adj})</small> */}
                 <IconButton>
                   <VolumeUpIcon sx={{ color: "#0e7b65" }} fontSize="small" />
                 </IconButton>
