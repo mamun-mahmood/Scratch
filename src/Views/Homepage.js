@@ -15,6 +15,10 @@ import * as Realm from "realm-web";
 import AddNewWord from "../Components/AddNewWord";
 import EditWord from "../Components/EditWord";
 import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, Fab } from "@mui/material";
+import Dictionary from "./Dictionary";
+import Practice from "./Practice";
+import Account from "./Account";
+import Setting from "./Setting";
 export default function Homepage() {
   const ref = React.useRef(null);
   const [value, setValue] = React.useState(0);
@@ -96,6 +100,10 @@ export default function Homepage() {
           </Button>
         </DialogActions>
       </Dialog>
+      {tab === 1 && <Dictionary/>}
+      {tab === 2 && <Practice/>}
+      {tab === 3 && <Account/>}
+      {tab === 4 && <Setting/>}
       <Paper
         sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
         elevation={3}
