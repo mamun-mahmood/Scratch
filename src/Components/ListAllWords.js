@@ -8,8 +8,7 @@ import StarIcon from "@mui/icons-material/Star";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Divider from "@mui/material/Divider";
-import Ded from "./Ded";
-import { CircularProgress, Fab } from "@mui/material";
+import { CircularProgress, Fab, } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 const style = {
@@ -21,7 +20,13 @@ const style = {
   marginLeft: "75%",
   backgroundColor: "#0e7b65",
 };
-export default function CheckboxList({ allWords, setTab, searchWord }) {
+export default function CheckboxList({
+  allWords,
+  setTab,
+  searchWord,
+  setEditWord,
+  handleClickOpen
+}) {
   const [checked, setChecked] = useState([0]);
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -35,8 +40,6 @@ export default function CheckboxList({ allWords, setTab, searchWord }) {
 
     setChecked(newChecked);
   };
-  console.log(allWords);
-  console.log(searchWord);
   const [show, setShow] = useState(false);
   const [showDescript, setShowDescript] = useState({});
   return (
@@ -66,10 +69,18 @@ export default function CheckboxList({ allWords, setTab, searchWord }) {
                     <IconButton sx={{ ml: 1 }} edge="end" aria-label="comments">
                       <StarIcon fontSize="small" sx={{ color: "#0e7b65" }} />
                     </IconButton>
-                    <IconButton sx={{ ml: 1 }} edge="end" aria-label="comments">
+                    <IconButton onClick={handleClickOpen} sx={{ ml: 1 }} edge="end" aria-label="comments">
                       <DeleteIcon fontSize="small" />
                     </IconButton>
-                    <IconButton sx={{ ml: 1 }} edge="end" aria-label="comments">
+                    <IconButton
+                      onClick={() => {
+                        setEditWord(word);
+                        setTab("editTab");
+                      }}
+                      sx={{ ml: 1 }}
+                      edge="end"
+                      aria-label="comments"
+                    >
                       <EditIcon fontSize="small" />
                     </IconButton>
                   </>
@@ -83,7 +94,6 @@ export default function CheckboxList({ allWords, setTab, searchWord }) {
                   </IconButton>
                 </ListItemButton>
               </ListItem>
-              {/* <Ded show={show}/> */}
               <div
                 style={{
                   padding: "5px 15px",
@@ -116,10 +126,18 @@ export default function CheckboxList({ allWords, setTab, searchWord }) {
                   <IconButton sx={{ ml: 1 }} edge="end" aria-label="comments">
                     <StarIcon fontSize="small" sx={{ color: "#0e7b65" }} />
                   </IconButton>
-                  <IconButton sx={{ ml: 1 }} edge="end" aria-label="comments">
+                  <IconButton onClick={handleClickOpen} sx={{ ml: 1 }} edge="end" aria-label="comments">
                     <DeleteIcon fontSize="small" />
                   </IconButton>
-                  <IconButton sx={{ ml: 1 }} edge="end" aria-label="comments">
+                  <IconButton
+                    onClick={() => {
+                      setEditWord(word);
+                      setTab("editTab");
+                    }}
+                    sx={{ ml: 1 }}
+                    edge="end"
+                    aria-label="comments"
+                  >
                     <EditIcon fontSize="small" />
                   </IconButton>
                 </>

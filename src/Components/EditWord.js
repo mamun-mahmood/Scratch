@@ -2,7 +2,7 @@ import { Button, Divider, Grid, IconButton, TextField } from "@mui/material";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import axios from "axios";
-const AddNewWord = ({setTab}) => {
+const EditWord = ({setTab, editWord}) => {
   const [formData, setFormData] = useState({})
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -16,7 +16,6 @@ const AddNewWord = ({setTab}) => {
       console.log(err);
     })
   }
-  console.log(formData);
   return (
     <div style={{ padding: "10px", animation: "rightfadeIn 0.5s ease-in-out",}}>
       <div
@@ -39,7 +38,7 @@ const AddNewWord = ({setTab}) => {
         >
           Cancel
         </Button>
-        <h4 style={{ fontSize: "18px", marginBottom: "10px" }}>Add New Word</h4>
+        <h4 style={{ fontSize: "18px", marginBottom: "10px" }}>Edit Word</h4>
         <Button
           variant="outlined"
           sx={{
@@ -65,6 +64,7 @@ const AddNewWord = ({setTab}) => {
               variant="standard"
               name="word"
               onChange={handleChange}
+              defaultValue={editWord.word}
             />
           </Grid>
           <Grid item xs={6}>
@@ -75,66 +75,79 @@ const AddNewWord = ({setTab}) => {
               variant="standard"
               name="partsOfSpeech"
               onChange={handleChange}
+              defaultValue={editWord.partsOfSpeech}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
+              multiline
               id="standard-basic"
               label="Meaning"
               variant="standard"
               name="meaning"
               onChange={handleChange}
+              defaultValue={editWord.meaning}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
+              multiline
               id="standard-basic"
               label="Example"
               variant="standard"
               name="exampleSentence"
               onChange={handleChange}
+              defaultValue={editWord.exampleSentence}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
+              multiline
               id="standard-basic"
               label="Mnemonics"
               variant="standard"
               name="mnemonics"
               onChange={handleChange}
+              defaultValue={editWord.mnemonics}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
+              multiline
               id="standard-basic"
               label="Synonyms"
               variant="standard"
               name="synonyms"
               onChange={handleChange}
+              defaultValue={editWord.synonyms}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
+              multiline
               id="standard-basic"
               label="Antonyms"
               variant="standard"
               name="antonyms"
               onChange={handleChange}
+              defaultValue={editWord.antonyms}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
+              multiline
               id="standard-basic"
               label="Note"
               variant="standard"
               name="notes"
               onChange={handleChange}
+              defaultValue={editWord.notes}
             />
           </Grid>
           <div
@@ -164,4 +177,4 @@ const AddNewWord = ({setTab}) => {
   );
 };
 
-export default AddNewWord;
+export default EditWord;

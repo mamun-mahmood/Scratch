@@ -13,7 +13,8 @@ import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import SettingsIcon from "@mui/icons-material/Settings";
 import * as Realm from "realm-web";
 import AddNewWord from "../Components/AddNewWord";
-
+import EditWord from "../Components/EditWord";
+import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, Fab } from "@mui/material";
 export default function Homepage() {
   const ref = React.useRef(null);
   const [value, setValue] = React.useState(0);
@@ -33,6 +34,16 @@ export default function Homepage() {
     }
   }, []);
   const [tab, setTab] = React.useState(0);
+  const [editWord, setEditWord] = React.useState("");
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Box
       sx={{
@@ -62,10 +73,29 @@ export default function Homepage() {
             <SearchBar allWords={allWords} searchWord={searchWord} setSearchWord={setSearchWord} sx={{ m: 0, p: 0 }} />
           </Paper>
           <CssBaseline />
-          <ListAllWords allWords={allWords} searchWord={searchWord} setTab={setTab}/>
+          <ListAllWords allWords={allWords} handleClickOpen={handleClickOpen} setEditWord={setEditWord} searchWord={searchWord} setTab={setTab}/>
         </>
       )}
       {tab === 5 && <AddNewWord setTab={setTab}/>}
+      {tab === "editTab"  && <EditWord  editWord={editWord} setTab={setTab}/>}
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle fullWidth id="alert-dialog-title">
+          {"Are you sure?"}
+        </DialogTitle>
+        <DialogContent>
+        </DialogContent>
+        <DialogActions>
+          <Button fullWidth variant="outlined" sx={{color: '#0e7b65',}} onClick={handleClose}>No</Button>
+          <Button fullWidth variant="outlined" sx={{color: 'red',}} onClick={handleClose} autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
       <Paper
         sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
         elevation={3}
