@@ -100,10 +100,10 @@ export default function Homepage({loggedInUser, logOut}) {
           </Button>
         </DialogActions>
       </Dialog>
-      {/* {tab === 1 && <Dictionary loggedInUser={loggedInUser}/>}
+      {tab === 1 && <Dictionary loggedInUser={loggedInUser}/>}
       {tab === 2 && <Practice loggedInUser={loggedInUser}/>}
       {tab === 3 && <Account loggedInUser={loggedInUser} logOut={logOut}/>}
-      {tab === 4 && <Setting loggedInUser={loggedInUser}/>} */}
+      {tab === 4 && <Setting loggedInUser={loggedInUser}/>}
       <Paper
         sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
         elevation={3}

@@ -1,25 +1,16 @@
 import React from "react";
-import { auth, provider } from "../Components/Firebase";
-import { signInWithPopup } from "firebase/auth";
+// import { auth, provider } from "../Components/Firebase";
+// import { signInWithPopup } from "firebase/auth";
 import logo from "../asset/Logo.png";
 import google from "../asset/google.svg";
 import facebook from "../asset/facebook.svg";
 import playStore from "../asset/google-play-badge.png"
+import { useAuth } from "../Components/AuthContext";
 const Login = () => {
-  const signIn = () => {
-    signInWithPopup(auth, provider)
-      .then((res) => {
-        const { displayName, photoURL, email } = res.user;
-        const signedInUser = {
-          name: displayName,
-          email: email,
-          photo: photoURL,
-        };
-        localStorage.setItem("w1o2r3d4b5a6n7k8j9w0t3",signedInUser);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  //all sign in methods from auth context
+  const { signInWithGoogle } = useAuth();
+  const signInG = async () => {
+    await signInWithGoogle();
   };
   return (
     <div
@@ -52,7 +43,7 @@ const Login = () => {
           <p>Sign In Using:</p>
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: '10px' }}>
             <img
-              onClick={signIn}
+              onClick={signInG}
               style={{ width: "40px" }}
               src={google}
               alt=""

@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider} from "firebase/auth";
+import { getAuth} from "firebase/auth";
+
 const firebaseApp = initializeApp({
     apiKey: "AIzaSyDB2jwTLBYk9vqf3B_0IfatCbiCMRTYCrk",
     authDomain: "word-store-mongo.firebaseapp.com",
@@ -9,7 +10,5 @@ const firebaseApp = initializeApp({
     appId: "1:85744182976:web:1025325dca6512e9756f25",
     measurementId: "G-PD870RFGPM"
 });
-const auth = getAuth(firebaseApp);
-const provider = new GoogleAuthProvider();
 
-export {auth, provider};
+export const auth = getAuth(firebaseApp);
