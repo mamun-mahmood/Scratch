@@ -19,7 +19,7 @@ import Dictionary from "./Dictionary";
 import Practice from "./Practice";
 import Account from "./Account";
 import Setting from "./Setting";
-export default function Homepage() {
+export default function Homepage({loggedInUser, logOut}) {
   const ref = React.useRef(null);
   const [value, setValue] = React.useState(0);
   const [allWords, setAllWords] = React.useState([]);
@@ -100,10 +100,10 @@ export default function Homepage() {
           </Button>
         </DialogActions>
       </Dialog>
-      {tab === 1 && <Dictionary/>}
-      {tab === 2 && <Practice/>}
-      {tab === 3 && <Account/>}
-      {tab === 4 && <Setting/>}
+      {/* {tab === 1 && <Dictionary loggedInUser={loggedInUser}/>}
+      {tab === 2 && <Practice loggedInUser={loggedInUser}/>}
+      {tab === 3 && <Account loggedInUser={loggedInUser} logOut={logOut}/>}
+      {tab === 4 && <Setting loggedInUser={loggedInUser}/>} */}
       <Paper
         sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
         elevation={3}
@@ -131,15 +131,15 @@ export default function Homepage() {
             onClick={() => setTab(2)}
           />
           <BottomNavigationAction
-            label="Account"
+            label="Profile"
             icon={<Avatar sx={{ height: 30, width: 30 }} />}
             onClick={() => setTab(3)}
           />
-          <BottomNavigationAction
+          {/* <BottomNavigationAction
             label="Setting"
             icon={<SettingsIcon sx={{ height: 30, width: 30 }} />}
             onClick={() => setTab(4)}
-          />
+          /> */}
         </BottomNavigation>
       </Paper>
     </Box>
