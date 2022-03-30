@@ -1,11 +1,12 @@
-import { createContext} from "react";
+import { createContext } from "react";
 import "./App.css";
 import Homepage from "./Views/Homepage";
 import Login from "./Views/Login";
 import AuthProvider, { useAuth } from "./Components/AuthContext";
+import PrivateRoute from "./Views/PrivateRoute";
 export const UserContext = createContext();
 function App() {
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth();
   console.log(currentUser);
   return (
     <div
@@ -18,6 +19,11 @@ function App() {
     >
       <div style={{ width: "600px" }}>
         <AuthProvider>
+          {/* <Router>
+            <PrivateRoute>
+              <Homepage loggedInUser={currentUser} />
+            </PrivateRoute>
+          </Router> */}
           {currentUser ? <Homepage loggedInUser={currentUser} /> : <Login />}
         </AuthProvider>
       </div>
