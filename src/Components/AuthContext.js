@@ -8,7 +8,7 @@ import { createContext, React, useEffect, useContext, useState } from "react";
 import { auth } from "./Firebase";
 
 const AuthContext = createContext({
-  // currentUser: null,
+  currentUser: null,
     // signInWithGoogle: () => Promise,
   //   login: () => Promise,
   //   signup: () => Promise,
@@ -36,8 +36,6 @@ export default function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
-      console.log(user);
-      console.log(currentUser);
     });
     return () => {
       unsubscribe();

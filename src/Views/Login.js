@@ -9,6 +9,7 @@ import { useAuth } from "../Components/AuthContext";
 const Login = () => {
   //all sign in methods from auth context
   const { signInWithGoogle } = useAuth();
+  
   const signInG = async () => {
     await signInWithGoogle();
   };
