@@ -10,20 +10,23 @@ import SearchBar from "../Components/SearchBar";
 import ListIcon from "@mui/icons-material/List";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
-import SettingsIcon from "@mui/icons-material/Settings";
+// import SettingsIcon from "@mui/icons-material/Settings";
 import * as Realm from "realm-web";
 import AddNewWord from "../Components/AddNewWord";
 import EditWord from "../Components/EditWord";
-import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogTitle, Fab } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Fab } from "@mui/material";
 import Dictionary from "./Dictionary";
 import Practice from "./Practice";
 import Account from "./Account";
 import Setting from "./Setting";
+import { useAuth } from "../Components/AuthContext";
 export default function Homepage() {
   const ref = React.useRef(null);
   const [value, setValue] = React.useState(0);
   const [allWords, setAllWords] = React.useState([]);
   const [searchWord, setSearchWord] = React.useState("")
+  const {currentUser} = useAuth()
+  console.log(currentUser);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(async () => {
     const REALM_APP_ID = "realmappwordstore-mgzfz";
