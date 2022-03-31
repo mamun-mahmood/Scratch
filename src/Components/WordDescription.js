@@ -121,7 +121,7 @@ const WordDescription = ({ setEditWord, setTab, word, index }) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle fullWidth id="alert-dialog-title">
+        <DialogTitle id="alert-dialog-title">
           {"Are you sure?"}
         </DialogTitle>
         <DialogContent></DialogContent>

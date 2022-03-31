@@ -20,19 +20,28 @@ export default function CheckboxList({
   searchWord,
   setEditWord,
   handleClickOpen,
+  dataLoading
 }) {
 
   return (
     <List style={{ minHeight: "100vh" }}>
       <div
         style={{
-          display: `${allWords.length ? "none" : "flex"}`,
+          display: `${dataLoading ? "flex" : "none"}`,
           justifyContent: "center",
           alignItems: "center",
           marginTop: "50%",
         }}
       >
         <CircularProgress sx={{ color: "#0e7b65" }} />
+      </div>
+      <div style={{
+        display: `${allWords.length <= 0  && dataLoading === false ? "block" : "none"}`,
+        textAlign: 'center',
+        marginTop: '50px'
+      }}>
+        <h4>No word found!</h4>
+        <small>Click the plus icon to add word</small>
       </div>
       {allWords.map((word, index) =>
         searchWord ? (
@@ -64,7 +73,7 @@ export default function CheckboxList({
       )}
       <Fab
         sx={style}
-        style={{ display: `${allWords.length ? "block" : "none"}` }}
+        style={{ display: `${dataLoading ? "none" : "block"}` }}
         color="primary"
         aria-label="add"
         onClick={() => setTab(5)}

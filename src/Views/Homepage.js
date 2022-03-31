@@ -25,10 +25,11 @@ export default function Homepage() {
   const [allWords, setAllWords] = React.useState([]);
   const [searchWord, setSearchWord] = React.useState("")
   const { currentUser } = useAuth()
-  
+  const [dataLoading, setDataLoading] = React.useState(false)
   const [userId, setUserId] = React.useState("")
   // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(async () => {
+    setDataLoading(true)
     const REALM_APP_ID = "realmappwordstore-mgzfz";
     const app = new Realm.App({ id: REALM_APP_ID });
     const credentials = Realm.Credentials.jwt(currentUser.accessToken);
@@ -36,7 +37,8 @@ export default function Homepage() {
       const user = await app.logIn(credentials);
       const words = await user.functions.getAllWords("project=" + user.id,);
       setAllWords(words);
-      setUserId(user.id)
+      setUserId(user.id);
+      setDataLoading(false)
     } catch (error) {
       console.log(error);
     }
@@ -83,7 +85,7 @@ export default function Homepage() {
             <SearchBar handleFilter={handleFilter} allWords={allWords} setAllWords={setAllWords} searchWord={searchWord} setTab={setTab} setSearchWord={setSearchWord} sx={{ m: 0, p: 0 }} />
           </Paper>
           <CssBaseline />
-          <ListAllWords allWords={allWords}  setEditWord={setEditWord} searchWord={searchWord} setTab={setTab} />
+          <ListAllWords dataLoading={dataLoading} allWords={allWords}  setEditWord={setEditWord} searchWord={searchWord} setTab={setTab} />
         </>
       )}
       {tab === 5 && <AddNewWord userId={userId} setTab={setTab} />}
