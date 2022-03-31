@@ -106,6 +106,7 @@ const WordDescription = ({ setEditWord, setTab, word, index }) => {
             </span>
           </h4>
           <Rating
+          readOnly
             name="simple-controlled"
             value={ratingValue}
             sx={{ color: "#0e7b65" }}

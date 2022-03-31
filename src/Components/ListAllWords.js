@@ -1,17 +1,17 @@
 // import { useState } from "react";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
-import { CircularProgress, Fab } from "@mui/material";
+import { CircularProgress, Fab, IconButton, Paper } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import WordDescription from "./WordDescription";
 
 const style = {
   position: "sticky",
-  top: "auto",
-  right: 20,
-  bottom: 100,
-  left: "auto",
-  marginLeft: "75%",
+  top: "70vh",
+  left: "100px",
+  // right: "auto",
+  zIndex: "1000",
+  width: "50px",
   backgroundColor: "#0e7b65",
 };
 export default function CheckboxList({
@@ -20,9 +20,8 @@ export default function CheckboxList({
   searchWord,
   setEditWord,
   handleClickOpen,
-  dataLoading
+  dataLoading,
 }) {
-
   return (
     <List style={{ minHeight: "100vh" }}>
       <div
@@ -35,11 +34,15 @@ export default function CheckboxList({
       >
         <CircularProgress sx={{ color: "#0e7b65" }} />
       </div>
-      <div style={{
-        display: `${allWords.length <= 0  && dataLoading === false ? "block" : "none"}`,
-        textAlign: 'center',
-        marginTop: '50px'
-      }}>
+      <div
+        style={{
+          display: `${
+            allWords.length <= 0 && dataLoading === false ? "block" : "none"
+          }`,
+          textAlign: "center",
+          marginTop: "50px",
+        }}
+      >
         <h4>No word found!</h4>
         <small>Click the plus icon to add word</small>
       </div>
@@ -48,13 +51,13 @@ export default function CheckboxList({
           word.word === searchWord && (
             <div key={index} style={{ animation: "fadeIn 0.4s ease-in-out" }}>
               <WordDescription
-              handleClickOpen={handleClickOpen}
-              setEditWord={setEditWord}
-              setTab={setTab}
-              word={word}
-              index={index}
-            />
-            <Divider />
+                handleClickOpen={handleClickOpen}
+                setEditWord={setEditWord}
+                setTab={setTab}
+                word={word}
+                index={index}
+              />
+              <Divider />
               <Divider />
             </div>
           )
@@ -71,15 +74,32 @@ export default function CheckboxList({
           </div>
         )
       )}
-      <Fab
-        sx={style}
-        style={{ display: `${dataLoading ? "none" : "block"}` }}
-        color="primary"
-        aria-label="add"
-        onClick={() => setTab(5)}
+      <div
+        style={{
+          position: "sticky",
+          top: "70vh",
+          marginLeft: "auto",
+          marginRight: "50px",
+          zIndex: "1000",
+          width: "60px",
+          height: "60px",
+          cursor: "pointer",
+        }}
       >
-        <AddIcon sx={{ mt: 1 }} />
-      </Fab>
+        <Fab
+          style={{
+            display: `${dataLoading ? "none" : "block"}`,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "#0e7b65",
+          }}
+          color="primary"
+          aria-label="add"
+          onClick={() => setTab(5)}
+        >
+          <AddIcon sx={{ mt: 1, width: '60%', height: '60%' }} />
+        </Fab>
+      </div>
     </List>
   );
 }
