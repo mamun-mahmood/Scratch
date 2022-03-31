@@ -5,7 +5,7 @@ import { IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 // import SearchIcon from "@mui/icons-material/Search";
 import Filter from "../Components/Filter";
-import { useState } from "react";
+// import { useState } from "react";
 const customStyles = {
   control: (base, state) => ({
     ...base,
@@ -19,6 +19,7 @@ const customStyles = {
     width: "100%",
     margin: 0,
     padding: 0,
+    marginTop: "1px",
   }),
 
   option: (styles, { isFocused }) => {
@@ -46,6 +47,7 @@ const customStyles = {
     borderLeft: "4px solid #0e7b65",
     borderRight: "4px solid #0e7b65",
     animation: "fadeIn 0.4s ease-in-out",
+    
   }),
 
   singleValue: (styles) => ({

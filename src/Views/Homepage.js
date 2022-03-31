@@ -23,22 +23,22 @@ export default function Homepage() {
   const ref = React.useRef(null);
   const [value, setValue] = React.useState(0);
   const [allWords, setAllWords] = React.useState([]);
-  const [searchWord, setSearchWord] = React.useState("")
-  const { currentUser } = useAuth()
-  const [dataLoading, setDataLoading] = React.useState(false)
-  const [userId, setUserId] = React.useState("")
+  const [searchWord, setSearchWord] = React.useState("");
+  const { currentUser } = useAuth();
+  const [dataLoading, setDataLoading] = React.useState(false);
+  const [userId, setUserId] = React.useState("");
   // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(async () => {
-    setDataLoading(true)
+    setDataLoading(true);
     const REALM_APP_ID = "realmappwordstore-mgzfz";
     const app = new Realm.App({ id: REALM_APP_ID });
     const credentials = Realm.Credentials.jwt(currentUser.accessToken);
     try {
       const user = await app.logIn(credentials);
-      const words = await user.functions.getAllWords("project=" + user.id,);
+      const words = await user.functions.getAllWords("project=" + user.id);
       setAllWords(words);
       setUserId(user.id);
-      setDataLoading(false)
+      setDataLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -50,12 +50,12 @@ export default function Homepage() {
     if (filterBy.order === "Descending") {
       console.log("Descending1");
       console.log(allWords);
-      setAllWords(allWords.reverse())
-      setTab(1)
-      setTab(0) 
-      // handleClose() 
+      setAllWords(allWords.reverse());
+      setTab(1);
+      setTab(0);
+      // handleClose()
     }
-  }
+  };
   return (
     <Box
       sx={{
@@ -64,7 +64,7 @@ export default function Homepage() {
         borderTop: "3px solid #0e7b65",
         borderLeft: "3px solid #0e7b65",
         borderRight: "3px solid #0e7b65",
-        borderRadius: '10px',
+        borderRadius: "10px",
         mt: 1,
         backgroundColor: "white",
       }}
@@ -82,10 +82,24 @@ export default function Homepage() {
               zIndex: "1000",
             }}
           >
-            <SearchBar handleFilter={handleFilter} allWords={allWords} setAllWords={setAllWords} searchWord={searchWord} setTab={setTab} setSearchWord={setSearchWord} sx={{ m: 0, p: 0 }} />
+            <SearchBar
+              handleFilter={handleFilter}
+              allWords={allWords}
+              setAllWords={setAllWords}
+              searchWord={searchWord}
+              setTab={setTab}
+              setSearchWord={setSearchWord}
+              sx={{ m: 0, p: 0 }}
+            />
           </Paper>
           <CssBaseline />
-          <ListAllWords dataLoading={dataLoading} allWords={allWords}  setEditWord={setEditWord} searchWord={searchWord} setTab={setTab} />
+          <ListAllWords
+            dataLoading={dataLoading}
+            allWords={allWords}
+            setEditWord={setEditWord}
+            searchWord={searchWord}
+            setTab={setTab}
+          />
         </>
       )}
       {tab === 5 && <AddNewWord userId={userId} setTab={setTab} />}
