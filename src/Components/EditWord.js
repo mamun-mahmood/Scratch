@@ -4,15 +4,18 @@ import AddIcon from "@mui/icons-material/Add";
 import axios from "axios";
 const EditWord = ({setTab, editWord}) => {
   const [formData, setFormData] = useState({
-    id: editWord._id,
+    id: editWord._id.toString(),
   })
+  
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
+    console.log(formData);
   };
   const handleSubmit = () => {
-    axios.post("https://us-east-1.aws.data.mongodb-api.com/app/realmappwordstore-mgzfz/endpoint/addNewWord", formData)
+    axios.post("https://us-east-1.aws.data.mongodb-api.com/app/realmappwordstore-mgzfz/endpoint/updateWord", formData)
     .then(res => {
       console.log(res);
+      setTab(0)
     })
     .catch(err => {
       console.log(err);

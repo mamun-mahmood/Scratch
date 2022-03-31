@@ -45,15 +45,6 @@ export default function Homepage() {
   }, [currentUser.accessToken]);
   const [tab, setTab] = React.useState(0);
   const [editWord, setEditWord] = React.useState("");
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   return (
     <Box
       sx={{
@@ -83,29 +74,11 @@ export default function Homepage() {
             <SearchBar allWords={allWords} searchWord={searchWord} setSearchWord={setSearchWord} sx={{ m: 0, p: 0 }} />
           </Paper>
           <CssBaseline />
-          <ListAllWords allWords={allWords} handleClickOpen={handleClickOpen} setEditWord={setEditWord} searchWord={searchWord} setTab={setTab} />
+          <ListAllWords allWords={allWords} setEditWord={setEditWord} searchWord={searchWord} setTab={setTab} />
         </>
       )}
       {tab === 5 && <AddNewWord userId={userId} setTab={setTab} />}
       {tab === "editTab" && <EditWord editWord={editWord} setTab={setTab} />}
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle fullWidth id="alert-dialog-title">
-          {"Are you sure?"}
-        </DialogTitle>
-        <DialogContent>
-        </DialogContent>
-        <DialogActions>
-          <Button fullWidth variant="outlined" sx={{ color: '#0e7b65', }} onClick={handleClose}>No</Button>
-          <Button fullWidth variant="outlined" sx={{ color: 'red', }} onClick={handleClose} autoFocus>
-            Yes
-          </Button>
-        </DialogActions>
-      </Dialog>
       {tab === 1 && <Dictionary />}
       {tab === 2 && <Practice />}
       {tab === 3 && <Account />}
