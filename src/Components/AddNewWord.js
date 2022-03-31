@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import axios from "axios";
 const AddNewWord = ({setTab, userId}) => {
-  const date = new Date("2019-01-01T00:00:00.000Z")
+  const date = new Date()
   const [formData, setFormData] = useState({
     _partition: "project=" + userId,
     date_created: date.toISOString()
@@ -13,11 +13,10 @@ const AddNewWord = ({setTab, userId}) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
   const handleSubmit = () => {
-    // const date = new Date("2019-01-01T00:00:00.000Z")
-    // setFormData({ ...formData, [date_created]: Date.parse(date) });
     axios.post("https://us-east-1.aws.data.mongodb-api.com/app/realmappwordstore-mgzfz/endpoint/addNewWord", formData)
     .then(res => {
       console.log(res);
+      setTab(0)
     })
     .catch(err => {
       console.log(err);

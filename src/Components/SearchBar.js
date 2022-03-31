@@ -60,7 +60,7 @@ const customStyles = {
     };
   },
 };
-const SearchBar = ({ allWords: data, searchWord, setSearchWord }) => {
+const SearchBar = ({ allWords: data, searchWord, setSearchWord, setAllWords, setTab, handleFilter}) => {
   let allWords = [];
   data.map((each) => allWords.push({ label: each.word, value: each.word }));
   return (
@@ -91,7 +91,7 @@ const SearchBar = ({ allWords: data, searchWord, setSearchWord }) => {
           />
         </IconButton>
         <IconButton>
-          <Filter />
+          <Filter handleFilter={handleFilter}  setAllWords={setAllWords} allWords={data} setTab={setTab}/>
         </IconButton>
         <IconButton>
           <AddBoxIcon sx={{ color: "grey" }} />

@@ -37,13 +37,23 @@ export default function Homepage() {
       const words = await user.functions.getAllWords("project=" + user.id,);
       setAllWords(words);
       setUserId(user.id)
-      console.log(user);
     } catch (error) {
       console.log(error);
     }
   }, [currentUser.accessToken]);
   const [tab, setTab] = React.useState(0);
   const [editWord, setEditWord] = React.useState("");
+  //filter word
+  const handleFilter = (filterBy) => {
+    if (filterBy.order === "Descending") {
+      console.log("Descending1");
+      console.log(allWords);
+      setAllWords(allWords.reverse())
+      setTab(1)
+      setTab(0) 
+      // handleClose() 
+    }
+  }
   return (
     <Box
       sx={{
@@ -70,10 +80,10 @@ export default function Homepage() {
               zIndex: "1000",
             }}
           >
-            <SearchBar allWords={allWords} searchWord={searchWord} setSearchWord={setSearchWord} sx={{ m: 0, p: 0 }} />
+            <SearchBar handleFilter={handleFilter} allWords={allWords} setAllWords={setAllWords} searchWord={searchWord} setTab={setTab} setSearchWord={setSearchWord} sx={{ m: 0, p: 0 }} />
           </Paper>
           <CssBaseline />
-          <ListAllWords allWords={allWords} setEditWord={setEditWord} searchWord={searchWord} setTab={setTab} />
+          <ListAllWords allWords={allWords}  setEditWord={setEditWord} searchWord={searchWord} setTab={setTab} />
         </>
       )}
       {tab === 5 && <AddNewWord userId={userId} setTab={setTab} />}

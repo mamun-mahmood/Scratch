@@ -7,7 +7,7 @@ import { Button, Divider } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import Slider from "@mui/material/Slider";
+// import Slider from "@mui/material/Slider";
 
 const style = {
   position: "absolute",
@@ -20,12 +20,12 @@ const style = {
   boxShadow: 24,
   p: 1,
 };
-function valuetext(value) {
-    return `${value}°C`;
-  }
+// function valuetext(value) {
+//     return `${value}°C`;
+//   }
   
-  const minDistance = 1;
-export default function BasicModal() {
+//   const minDistance = 1;
+export default function BasicModal({setAllWords, allWords, setTab, handleFilter:filterData}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -45,20 +45,24 @@ export default function BasicModal() {
   const handleChange = (event) => {
     setFilterBy({ ...filterBy, [event.target.name]: event.target.value });
   };
-  const [value1, setValue1] = React.useState([0, 5]);
+  // const [value1, setValue1] = React.useState([0, 5]);
 
-  const handleChange1 = (event, newValue, activeThumb) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
+  // const handleChange1 = (event, newValue, activeThumb) => {
+  //   if (!Array.isArray(newValue)) {
+  //     return;
+  //   }
 
-    if (activeThumb === 0) {
-      setValue1([Math.min(newValue[0], value1[1] - minDistance), value1[1]]);
-    } else {
-      setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
-    }
-  };
-  return (
+  //   if (activeThumb === 0) {
+  //     setValue1([Math.min(newValue[0], value1[1] - minDistance), value1[1]]);
+  //   } else {
+  //     setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
+  //   }
+  // };
+  const handleFilter = (filterBy) => {
+    filterData(filterBy)
+    handleClose()
+  }
+  return ( 
     <>
       <FilterListIcon onClick={handleOpen} sx={{ color: "grey" }} />
       <Modal
@@ -95,6 +99,7 @@ export default function BasicModal() {
               sx={{ color: "#0e7b65" }}
               id="modal-modal-title"
               component="h2"
+              onClick={() => handleFilter(filterBy)}
             >
               Filter
             </Button>
@@ -145,7 +150,8 @@ export default function BasicModal() {
                 label="Filter"
               >
                 <MenuItem value="Word">Word</MenuItem>
-                <MenuItem value="Adj">Adj</MenuItem>
+                <MenuItem value="Learning">Learning</MenuItem>
+                <MenuItem value="WhenAdded">When Added</MenuItem>
               </Select>
             </FormControl>
             <FormControl
@@ -165,7 +171,7 @@ export default function BasicModal() {
             </FormControl>
           </div>
           {/* range slider */}
-          <Slider
+          {/* <Slider
           sx={{color: '#0e7b65', width: '80%', ml: "10%"}}
             getAriaLabel={() => 'Minimum distance'}
             value={value1}
@@ -174,7 +180,7 @@ export default function BasicModal() {
             getAriaValueText={valuetext}
             disableSwap
           />
-          <Typography sx={{textAlign: 'center', mt:-2}}>Learning Level</Typography>
+          <Typography sx={{textAlign: 'center', mt:-2}}>Learning Level</Typography> */}
         </Box>
       </Modal>
     </>
