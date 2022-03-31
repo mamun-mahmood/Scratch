@@ -26,7 +26,7 @@ export default function Homepage() {
   const [allWords, setAllWords] = React.useState([]);
   const [searchWord, setSearchWord] = React.useState("")
   const { currentUser } = useAuth()
-  console.log(currentUser);
+  
   const [userId, setUserId] = React.useState("")
   // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(async () => {
@@ -35,13 +35,14 @@ export default function Homepage() {
     const credentials = Realm.Credentials.jwt(currentUser.accessToken);
     try {
       const user = await app.logIn(credentials);
-      const words = await user.functions.getAllWords();
+      const words = await user.functions.getAllWords("project=" + user.id,);
       setAllWords(words);
       setUserId(user.id)
+      console.log(user);
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [currentUser.accessToken]);
   const [tab, setTab] = React.useState(0);
   const [editWord, setEditWord] = React.useState("");
   const [open, setOpen] = React.useState(false);
