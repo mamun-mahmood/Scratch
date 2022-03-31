@@ -20,7 +20,6 @@ const AddNewWord = ({setTab, userId}) => {
       console.log(err);
     })
   }
-  console.log(formData);
   return (
     <div style={{ padding: "10px", animation: "rightfadeIn 0.5s ease-in-out",}}>
       <div
