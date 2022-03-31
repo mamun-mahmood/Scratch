@@ -14,7 +14,7 @@ import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import * as Realm from "realm-web";
 import AddNewWord from "../Components/AddNewWord";
 import EditWord from "../Components/EditWord";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Fab } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle,  } from "@mui/material";
 import Dictionary from "./Dictionary";
 import Practice from "./Practice";
 import Account from "./Account";
