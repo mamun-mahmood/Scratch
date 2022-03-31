@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import axios from "axios";
 const EditWord = ({setTab, editWord}) => {
-  const [formData, setFormData] = useState({})
+  const [formData, setFormData] = useState({
+    id: editWord._id,
+  })
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
