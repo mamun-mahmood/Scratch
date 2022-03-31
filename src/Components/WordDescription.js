@@ -64,7 +64,7 @@ const WordDescription = ({handleClickOpen, setEditWord, setTab, word, handleTogg
               <h4>
                 Meaning:
                 <span>
-                  {/* <small>{word.meaning}</small> */}
+                  <small>{word.meaning}</small>
                 </span>
               </h4>
               <Rating

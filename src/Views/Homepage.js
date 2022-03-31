@@ -26,7 +26,7 @@ export default function Homepage() {
   const [allWords, setAllWords] = React.useState([]);
   const [searchWord, setSearchWord] = React.useState("")
   const {currentUser} = useAuth()
-  console.log(currentUser);
+  console.log(currentUser.token);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(async () => {
     const REALM_APP_ID = "realmappwordstore-mgzfz";

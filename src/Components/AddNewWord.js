@@ -2,8 +2,12 @@ import { Button, Divider, Grid, IconButton, TextField } from "@mui/material";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import axios from "axios";
-const AddNewWord = ({setTab}) => {
-  const [formData, setFormData] = useState({})
+const AddNewWord = ({setTab, userId}) => {
+  const [formData, setFormData] = useState({
+    _partition: "project=" + userId,
+    date_created:  Date.parse("2019-01-01T00:00:00.000+00:00")
+
+  })
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
