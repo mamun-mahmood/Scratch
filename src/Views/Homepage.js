@@ -19,20 +19,25 @@ import Dictionary from "./Dictionary";
 import Practice from "./Practice";
 import Account from "./Account";
 import Setting from "./Setting";
+import { useAuth } from "../Components/AuthContext";
 export default function Homepage() {
   const ref = React.useRef(null);
   const [value, setValue] = React.useState(0);
   const [allWords, setAllWords] = React.useState([]);
   const [searchWord, setSearchWord] = React.useState("")
+  const { currentUser } = useAuth()
+  console.log(currentUser);
+  const [userId, setUserId] = React.useState("")
   // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(async () => {
     const REALM_APP_ID = "realmappwordstore-mgzfz";
     const app = new Realm.App({ id: REALM_APP_ID });
-    const credentials = Realm.Credentials.anonymous();
+    const credentials = Realm.Credentials.jwt(currentUser.accessToken);
     try {
       const user = await app.logIn(credentials);
       const words = await user.functions.getAllWords();
       setAllWords(words);
+      setUserId(user.id)
     } catch (error) {
       console.log(error);
     }
@@ -77,11 +82,11 @@ export default function Homepage() {
             <SearchBar allWords={allWords} searchWord={searchWord} setSearchWord={setSearchWord} sx={{ m: 0, p: 0 }} />
           </Paper>
           <CssBaseline />
-          <ListAllWords allWords={allWords} handleClickOpen={handleClickOpen} setEditWord={setEditWord} searchWord={searchWord} setTab={setTab}/>
+          <ListAllWords allWords={allWords} handleClickOpen={handleClickOpen} setEditWord={setEditWord} searchWord={searchWord} setTab={setTab} />
         </>
       )}
-      {tab === 5 && <AddNewWord setTab={setTab}/>}
-      {tab === "editTab"  && <EditWord  editWord={editWord} setTab={setTab}/>}
+      {tab === 5 && <AddNewWord userId={userId} setTab={setTab} />}
+      {tab === "editTab" && <EditWord editWord={editWord} setTab={setTab} />}
       <Dialog
         open={open}
         onClose={handleClose}
@@ -94,16 +99,16 @@ export default function Homepage() {
         <DialogContent>
         </DialogContent>
         <DialogActions>
-          <Button fullWidth variant="outlined" sx={{color: '#0e7b65',}} onClick={handleClose}>No</Button>
-          <Button fullWidth variant="outlined" sx={{color: 'red',}} onClick={handleClose} autoFocus>
+          <Button fullWidth variant="outlined" sx={{ color: '#0e7b65', }} onClick={handleClose}>No</Button>
+          <Button fullWidth variant="outlined" sx={{ color: 'red', }} onClick={handleClose} autoFocus>
             Yes
           </Button>
         </DialogActions>
       </Dialog>
-      {tab === 1 && <Dictionary/>}
-      {tab === 2 && <Practice/>}
-      {tab === 3 && <Account/>}
-      {tab === 4 && <Setting/>}
+      {tab === 1 && <Dictionary />}
+      {tab === 2 && <Practice />}
+      {tab === 3 && <Account />}
+      {tab === 4 && <Setting />}
       <Paper
         sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
         elevation={3}

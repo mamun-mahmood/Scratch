@@ -82,13 +82,12 @@ const SearchBar = ({ allWords: data, searchWord, setSearchWord }) => {
         </IconButton>
       </div> */}
       <div style={{ position: "absolute", top: 0, right: 0 }}>
-        <IconButton>
-          <CloseIcon
-            style={{ display: `${searchWord ? "block" : "none"}` }}
-            onClick={() => {
+        <IconButton onClick={() => {
               setSearchWord("");
               allWords.push([]);
-            }}
+            }}>
+          <CloseIcon
+            style={{ display: `${searchWord ? "block" : "none"}` }}
           />
         </IconButton>
         <IconButton>
