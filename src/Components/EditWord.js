@@ -22,7 +22,15 @@ const EditWord = ({setTab, editWord}) => {
     })
   }
   return (
-    <div style={{ padding: "10px", animation: "rightfadeIn 0.5s ease-in-out",}}>
+    <div style={{ padding: "10px", animation: "rightfadeIn 0.5s ease-in-out", height: '100vh'}}>
+      <div style={{
+        position: "sticky",
+        top: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: "white",
+        zIndex: "1000",
+      }}>
       <div
         style={{
           display: "flex",
@@ -57,6 +65,7 @@ const EditWord = ({setTab, editWord}) => {
         >
           Save
         </Button>
+      </div>
       </div>
       <Divider />
       <div>
